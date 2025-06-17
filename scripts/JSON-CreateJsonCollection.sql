@@ -1,0 +1,1 @@
+CREATE TABLE JsonOrders (OrderId int, OrderDetails JSON NOT NULL);

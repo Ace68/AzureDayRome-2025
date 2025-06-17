@@ -1,0 +1,20 @@
+
+version: '3.3'
+
+services:
+  sqlsrv:
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    restart: unless-stopped
+    container_name: sqlserver
+    # needed to copy file from a targetvol inside container to a vol in target machine (./dockervol)
+    volumes: 
+       - type: bind
+         source: ./backup
+         target: /var/opt/mssql/backup
+    ports:
+      - target: 1433
+        published: 1433 
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=azureday!2025
+      - MSSQL_PID=Express
